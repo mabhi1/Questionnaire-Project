@@ -1,0 +1,39 @@
+<div>
+    <div>
+        <h1>{{question.title}}</h1>
+        <h2>{{question.description}}</h1>
+
+            <h1>The answer is</h1>
+            <h2>{{singalAnswer.description}}</h2>
+    </div>
+    {{#if singalAnswer.comments.length}}
+    <ol>
+        {{#each singalAnswer.comments}}
+        <li>
+            {{this.commentText}}
+        </li>
+        {{/each}}
+    </ol>
+    {{else}}
+    <p> There are no comments for this answer.</p>
+    {{/if}}
+
+    {{!-- build a rich text box to submit answer --}}
+    {{!-- action need to modify --}}
+    <form id="textSubmit" action="/test" method="post">
+        <textarea name="content" id="editor">
+  </textarea>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+
+
+</div>
+
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

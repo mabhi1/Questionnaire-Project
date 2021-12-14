@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Questionnaire</title>
+    <link rel="stylesheet" href="/public/css/site.css" />
+    {{!-- wysiwyg editor is not implemented - commenting this out as it brings in a lot of external content --}}
+    {{!-- <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script> --}}
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="/public/js/validation.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light shadow-sm rounded sticky-top">
+      <a class="navbar-brand" href="/"><i class="fas fa-comments"></i> Questionnaire</a>
+      <form class="form-inline my-2 my-lg-0 w-50" name="search_form" method="post" onsubmit="return validateSearchForm()" action="/questions/search">
+        <input class="form-control mr-sm-2 w-75 search" type="search" placeholder="Search for questions [tags, title]" name="keyword" aria-label="Search" required>
+        <input class="btn btn-secondary" type="submit" value="Search">
+      </form>
+    <div class="btn-group" role="group" aria-label="">
+      <button type="button" onclick="location.href='/'" class="btn btn-light">Home</button>&nbsp;
+      <div class="dropdown">
+    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Menu
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" id="menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/communities/">All Communities</a>
+      {{#unless no_com}}
+      <a class="dropdown-item" href="/communities/create/new">Create Community</a>
+      {{/unless}}
+      {{#unless no_ques}}
+      <a class="dropdown-item" href="/questions/create/new">Ask a Question</a>
+      {{/unless}}
+    </div>
+  </div>&nbsp;
+    {{#if session.userId}}
+        {{!-- <a href="/users/{{session.userId}}"><button type="button" class="btn btn-light">My Account</button></a>&nbsp; --}}
+        <button type="button" class="btn btn-light" onclick="location.href='/users/{{session.userId}}'">My Account</button>&nbsp;
+        {{!-- <a href="/site/logout"><button type="button" class="btn btn-light">Logout</button></a> --}}
+        <button type="button" class="btn btn-light" onclick="location.href='/site/logout'">Logout</button>
+    </div>
+      {{else}}
+        {{!-- <a href="/users/signup"><button type="button" class="btn btn-light">Register</button></a>&nbsp; --}}
+        <button type="button" class="btn btn-light" onclick="location.href='/users/signup'">Register</button>&nbsp;
+        {{!-- <a href="/site/login"><button type="button" class="btn btn-light">Login</button></a> --}}
+        <button type="button" class="btn btn-light" onclick="location.href='/site/login'">Login</button>
+      </div>
+      {{/if}}
+    </nav>
+    <br />
+    <div class="ml-5 mr-5 con">
+    {{{body}}}
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://kit.fontawesome.com/6bb6871a7b.js" crossorigin="anonymous"></script>
+  
+  {{#if scriptUrl}}
+  {{#each scriptUrl}}
+  <script src="/public/js/{{this}}"></script>
+  {{/each}}
+  {{/if}}
+  <br><br>
+  </body>
+</html>

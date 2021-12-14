@@ -1,0 +1,27 @@
+{{!-- shows a page where the user can see the community details--}}
+<div class="jumbotron">
+<h1>{{communityInfo.community.name}}</h1>
+<hr class="my-4">
+<p id="test">{{communityInfo.community.description}}</p>
+<button id="btnSubscribe" data-subscribeStatus="{{isSubscribed}}" class="btn btn-secondary btn-sm"></button>&nbsp;&nbsp;&nbsp;
+{{#if isAdmin}}
+<button id="btnShowFlag" class="btn btn-secondary btn-sm" onclick="location.href='/communities/{{communityInfo.community._id}}/view/flagged'">View Flagged</button>
+&nbsp;&nbsp;&nbsp;
+{{!-- <a href="/communities/{{communityInfo.community._id}}/edit"><button id="btnEditCom" class="btn btn-secondary btn-sm">Edit Community</button></a> --}}
+<button id="btnEditCom" class="btn btn-secondary btn-sm" onclick="location.href='/communities/{{communityInfo.community._id}}/edit'">Edit Community</button>
+
+{{/if}}
+</div>
+{{#if questions}}
+<ul>
+    {{#each questions}}
+    <li>
+        <a href="/questions/{{this._id}}">{{this.title}}</a>
+        <p>{{this.description}}</p>
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p>There are no questions in this community. <button class="btn btn-light" onclick="location.href ='/questions/create/new'">Start asking questions here!</button></p>
+{{!-- <p>There are no questions in this community. <button class="btn btn-light" onclick="location.href ='/questions/create/new'"><a class="link-rm-dec" href="/questions/create/new">Start asking questions here!</a></button></p> --}}
+{{/if}}

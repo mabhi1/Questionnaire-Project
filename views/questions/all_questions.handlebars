@@ -1,0 +1,46 @@
+<main>
+  {{#each questions}}
+    <div class="card float-right">
+      <div class="card-body">
+        <div class="h5 card-title">Votes</div>
+        <p class="votes-disp float-right">{{this.voteCount}}</p>
+      </div>
+    </div>
+    <div class="h4"><a href="/questions/{{this._id}}">{{this.title}}</a></div>
+    <p>{{this.description}}</p>
+    <div class="h4">
+    <span class="badge badge-dark">
+      {{#if this.communityId}}
+      <span><a class=" link-rm-dec-b" href="/communities/{{this.communityId}}">{{this.communityName}}</a></span>
+      {{/if}}
+    </span><br>
+    </div>
+    <span>Tags:
+      {{#if this.tags}}
+        {{#each this.tags}}
+          <span>{{this}}</span>
+        {{/each}}
+      {{/if}}
+    </span>
+    {{#unless this.tags}}
+      No tags available.
+    {{/unless}}
+    <hr />
+  {{/each}}
+  <!-- This is not the show questions by community page. -->
+  <!-- There was a merge conflict here. I'm keeping both - we'll finalize once we decide on the UI. -->
+  <!--    {{#if questions.length}}
+    <ol>
+        {{#each questions}}
+        <li>
+            <h1>{{this.title}}</h1>>
+            <p> {{this.description}} </p>
+            <p>{{this.tags}}</p>
+            <p>Posted Date: {{this.createdAt}}</p>
+        </li>
+        {{/each}}
+    </ol>
+    {{else}}
+    <p>There no question in this community.</p>
+    {{/if}} -->
+</main>

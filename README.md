@@ -36,8 +36,3 @@ Just input the relevant tags and titles.
 You can ask a question in an existed community or qucikly create a community.
 Choose a community that you are interested in and subscribe to it.
 Or you can create a new community in an individual page.
-
-
-# Contributors
-Shiva, Abhi, Sid, Lin
-We wish you can enjor our project.

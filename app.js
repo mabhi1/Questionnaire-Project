@@ -8,12 +8,12 @@ const routes = require("./routes");
 const middlewares = require("./middlewares/middlewares");
 
 app.use(
-  session({
-    name: "AuthCookie",
-    secret: "sacredword",
-    resave: false,
-    saveUninitialized: false,
-  })
+    session({
+        name: "AuthCookie",
+        secret: "sacredword",
+        resave: false,
+        saveUninitialized: false,
+    })
 );
 
 app.use(express.json());
@@ -27,12 +27,12 @@ app.use("/communities/:id/edit/edit", middlewares.changeMethodToPutForCommunityE
 app.use("/questions/:questionId/answers/:answerId", middlewares.changeMethodToPutForAnswerUpdate);
 
 app.use("/questions/search", (req, res, next) => {
-  if (req.method == "POST") {
-    if (req.body.keyword.trim().length == 0 || req.body.keyword.match(/^[^a-zA-Z0-9]+$/) != null) res.redirect("/");
-    else next();
-  } else {
-    next();
-  }
+    if (req.method == "POST") {
+        if (req.body.keyword.trim().length == 0 || req.body.keyword.match(/^[^a-zA-Z0-9]+$/) != null) res.redirect("/");
+        else next();
+    } else {
+        next();
+    }
 });
 app.use("/questions/:id", middlewares.questionEditMiddleware);
 app.use("/questions/:id/delete", middlewares.questionDeleteMiddleware);
@@ -45,6 +45,7 @@ app.set("view engine", "handlebars");
 
 routes(app);
 
-app.listen(3000, () => {
-  console.log("Server started at port 3000!");
+PORT = process.env.PORT || "8080";
+app.listen(PORT, () => {
+    console.log("Server started at port 3000!");
 });

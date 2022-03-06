@@ -36,3 +36,6 @@ Just input the relevant tags and titles.
 You can ask a question in an existed community or qucikly create a community.
 Choose a community that you are interested in and subscribe to it.
 Or you can create a new community in an individual page.
+
+## Deployed
+This project is deployed on https://questionnaire-node.herokuapp.com/

@@ -321,7 +321,7 @@ router.delete("/:id/delete", async (req, res) => {
 router.get("/create/new", async (req, res) => {
   if (xss(req.session.userId)) {
     let com = await communityData.getAllcommunities();
-    res.status(200).render("Questions/new", {
+    res.status(200).render("questions/new", {
       com: com,
       session: req.session,
       no_ques: true,

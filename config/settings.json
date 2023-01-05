@@ -1,6 +1,6 @@
 {
     "mongoConfig": {
-      "serverUrl": process.env.MONGODB_URI,
+      "serverUrl": "mongodb://localhost:27017",
       "database": "questionnaire"
     }
   }
